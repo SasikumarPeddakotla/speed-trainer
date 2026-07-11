@@ -1,4 +1,4 @@
-const CACHE_NAME = "speed-trainer-v4";
+const CACHE_NAME = "speed-trainer-v5";
 
 const FILES = [
   "./",

@@ -1,27 +1,31 @@
 {
+  "id": "/speed-trainer/",
   "name": "Speed Trainer",
   "short_name": "Speed Trainer",
-  "description": "Practice Math calculations faster.",
-  "start_url": "./",
+  "description": "Practice math calculations faster.",
+
+  "start_url": "/speed-trainer/",
+  "scope": "/speed-trainer/",
+
   "display": "standalone",
+
   "background_color": "#eef2ff",
   "theme_color": "#2563eb",
+
   "orientation": "portrait",
+
   "icons": [
-      {
-          "src": "assets/icon144.png",
-          "sizes": "144x144",
-          "type": "image/png"
-        },
-        {
-            "src": "assets/icon192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-          "src": "assets/icon512.png",
-          "sizes": "512x512",
-          "type": "image/png"
-        }
+    {
+      "src": "assets/icon192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
   ]
 }
