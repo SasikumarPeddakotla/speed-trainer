@@ -1,13 +1,3 @@
-function startStopwatch() {
-  timer.mode = "stopwatch";
-
-  timer.startedAt = performance.now();
-
-  timer.duration = 0;
-
-  startTimer();
-}
-
 function startTimer() {
   stopTimer();
 
@@ -27,25 +17,22 @@ function updateTimer() {
 
   let seconds;
 
-  if (timer.mode === "stopwatch") {
-    seconds = elapsed;
-  } else {
-    seconds = timer.duration - elapsed;
+  seconds = timer.duration - elapsed;
 
-    if (seconds <= 0) {
-      seconds = 0;
-
-      endSession();
-
-      return;
-    }
+  if (seconds < 0) {
+    endSession();
+    return;
   }
 
   const minutes = Math.floor(seconds / 60);
 
-  seconds %= 60;
+  const remainingSeconds = seconds % 60;
 
-  timerDisplay.textContent = `⏱ ${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  statusDisplay.textContent = `⏱ ${String(minutes).padStart(2, "0")}:${String(remainingSeconds).padStart(2, "0")}`;
+
+  if (seconds === 0) {
+    endSession();
+  }
 }
 
 function startCountdown() {
@@ -58,4 +45,14 @@ function startCountdown() {
   startTimer();
 }
 
-function startQuestionChallenge() {}
+function startQuestionChallenge() {
+  statusDisplay.textContent = `✅ ${session.correctCount}/${settings.questionLimit}`;
+}
+
+function updateQuestionChallenge() {
+  statusDisplay.textContent = `✅ ${session.correctCount}/${settings.questionLimit}`;
+
+  if (session.correctCount >= settings.questionLimit) {
+    endSession();
+  }
+}

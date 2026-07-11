@@ -1,5 +1,5 @@
 function startSession() {
-  endSession();
+  endSession(false);
 
   session.correctCount = 0;
   session.wrongCount = 0;
@@ -19,14 +19,16 @@ function startSession() {
 
   switch (settings.sessionType) {
     case "practice":
-      startStopwatch();
+      statusDisplay.style.display = "none";
       break;
 
     case "countdown":
+      statusDisplay.style.display = "";
       startCountdown();
       break;
 
     case "question":
+      statusDisplay.style.display = "";
       startQuestionChallenge();
       break;
   }
@@ -34,9 +36,12 @@ function startSession() {
   nextQ();
 }
 
-function endSession() {
+function endSession(showSummary = true) {
   stopTimer();
   session.endTime = performance.now();
+  if (showSummary) {
+    showSessionSummary();
+  }
 }
 
 function updateStats() {
@@ -51,7 +56,7 @@ function updateStats() {
 }
 
 function getAverageResponseTime() {
-  if (session.correct === 0) return 0;
+  if (session.correctCount === 0) return 0;
 
-  return session.totalResponseTime / session.correct;
+  return session.totalResponseTime / session.correctCount;
 }

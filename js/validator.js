@@ -56,6 +56,9 @@ function checkAnswer(userAnswer) {
     answerInput.classList.add("correct");
 
     updateStats();
+    if (settings.sessionType === "question") {
+      updateQuestionChallenge();
+    }
 
     setTimeout(nextQ, 150);
   } else {
@@ -75,8 +78,6 @@ function checkAnswer(userAnswer) {
 // -------------------------
 
 function fail() {
-  session.total++;
-
   session.wrongCount++;
 
   session.streakCount = 0;

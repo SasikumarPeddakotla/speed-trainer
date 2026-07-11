@@ -29,7 +29,7 @@ const timer = {
   id: null,
   startedAt: null,
   duration: 0,
-  mode: "stopwatch", // "stopwatch" or "countdown"
+  mode: "practice", // "practice" or "countdown"
 };
 
 const digitOptions = [

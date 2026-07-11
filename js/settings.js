@@ -111,21 +111,7 @@ function updateOptions() {
 }
 
 function applyPracticeSettings() {
-  stopTimer();
-
-  switch (settings.sessionType) {
-    case "practice":
-      startStopwatch();
-      break;
-
-    case "countdown":
-      startCountdown();
-      break;
-
-    case "question":
-      startQuestionChallenge();
-      break;
-  }
+  startSession();
 }
 
 function openTablePopup() {
