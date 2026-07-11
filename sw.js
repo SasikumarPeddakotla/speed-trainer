@@ -1,4 +1,4 @@
-const CACHE_NAME = "speed-trainer-v1";
+const CACHE_NAME = "speed-trainer-v2";
 
 const FILES = [
   "./",
@@ -10,7 +10,7 @@ const FILES = [
   "./js/utils.js",
   "./js/generators.js",
   "./js/session.js",
-  "./js/timer.js",
+  "./js/practiceModes.js",
   "./js/keyboard.js",
   "./js/modal.js",
   "./js/settings.js",
@@ -18,8 +18,8 @@ const FILES = [
 
   "./manifest.json",
 
-  "./assets/icon-192.png",
-  "./assets/icon-512.png",
+  "./assets/favicon.png",
+  "./assets/app-icon.png",
 ];
 
 self.addEventListener("install", (event) => {
