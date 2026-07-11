@@ -1,8 +1,9 @@
-const CACHE_NAME = "speed-trainer-v5";
+const CACHE_NAME = "speed-trainer-v6";
 
-const FILES = [
+const APP_SHELL = [
   "./",
   "./index.html",
+
   "./css/style.css",
 
   "./js/app.js",
@@ -15,6 +16,7 @@ const FILES = [
   "./js/modal.js",
   "./js/settings.js",
   "./js/validator.js",
+  "./js/summary.js",
 
   "./manifest.json",
 
@@ -24,20 +26,93 @@ const FILES = [
   "./assets/icon512.png",
 ];
 
-self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches
-      .open(CACHE_NAME)
+// ----------------------------
+// Install
+// ----------------------------
 
-      .then((cache) => cache.addAll(FILES)),
+self.addEventListener("install", (event) => {
+  self.skipWaiting();
+
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)),
   );
 });
 
-self.addEventListener("fetch", (event) => {
-  event.respondWith(
-    caches
-      .match(event.request)
+// ----------------------------
+// Activate
+// ----------------------------
 
-      .then((response) => response || fetch(event.request)),
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    Promise.all([
+      caches.keys().then((keys) =>
+        Promise.all(
+          keys.map((key) => {
+            if (key !== CACHE_NAME) {
+              return caches.delete(key);
+            }
+          }),
+        ),
+      ),
+
+      self.clients.claim(),
+    ]),
+  );
+});
+
+// ----------------------------
+// Fetch
+// ----------------------------
+
+self.addEventListener("fetch", (event) => {
+  if (event.request.method !== "GET") return;
+
+  const url = new URL(event.request.url);
+
+  // Ignore browser extensions etc.
+  if (url.origin !== self.location.origin) return;
+
+  // Cache First for static assets
+  if (
+    url.pathname.endsWith(".png") ||
+    url.pathname.endsWith(".jpg") ||
+    url.pathname.endsWith(".jpeg") ||
+    url.pathname.endsWith(".svg") ||
+    url.pathname.endsWith(".webp") ||
+    url.pathname.endsWith(".woff") ||
+    url.pathname.endsWith(".woff2")
+  ) {
+    event.respondWith(
+      caches.match(event.request).then((cached) => {
+        if (cached) return cached;
+
+        return fetch(event.request).then((response) => {
+          const copy = response.clone();
+
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, copy);
+          });
+
+          return response;
+        });
+      }),
+    );
+
+    return;
+  }
+
+  // Network First for HTML/CSS/JS
+  event.respondWith(
+    fetch(event.request)
+      .then((response) => {
+        const copy = response.clone();
+
+        caches.open(CACHE_NAME).then((cache) => {
+          cache.put(event.request, copy);
+        });
+
+        return response;
+      })
+      .catch(() => caches.match(event.request)),
   );
 });
