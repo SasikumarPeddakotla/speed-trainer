@@ -8,7 +8,7 @@ const app = {
 const settings = {
   sessionType: "practice",
   countdownMinutes: 1,
-  questionLimit: 50,
+  questionLimit: 10,
 };
 
 const session = {

@@ -58,8 +58,25 @@ function renderPracticeSettings(settingsArea) {
   // Unlimited Practice has no extra settings yet.
 }
 
+function renderSelectionSettings(
+  settingsArea,
+  title,
+  options,
+  selectedValue,
+  onSelect,
+) {
+  const group = createChoiceGroup(title, options, selectedValue);
+
+  makeSelectable(group.group, (value) => {
+    onSelect(Number(value));
+  });
+
+  settingsArea.appendChild(group.wrapper);
+}
+
 function renderCountdownSettings(settingsArea) {
-  const duration = createChoiceGroup(
+  renderSelectionSettings(
+    settingsArea,
     "Duration",
     [
       ["1 min", 1],
@@ -69,16 +86,29 @@ function renderCountdownSettings(settingsArea) {
       ["15 min", 15],
     ],
     settings.countdownMinutes,
+    (value) => {
+      settings.countdownMinutes = value;
+    },
   );
-
-  makeSelectable(duration.group, (value) => {
-    settings.countdownMinutes = Number(value);
-  });
-
-  settingsArea.appendChild(duration.wrapper);
 }
 
-function renderQuestionSettings(settingsArea) {}
+function renderQuestionSettings(settingsArea) {
+  renderSelectionSettings(
+    settingsArea,
+    "Question Count",
+    [
+      ["10", 10],
+      ["25", 25],
+      ["50", 50],
+      ["100", 100],
+      ["200", 200],
+    ],
+    settings.questionLimit,
+    (value) => {
+      settings.questionLimit = value;
+    },
+  );
+}
 
 function updateOptions() {
   const alphabetModes = ["mixed", "l2n", "n2l"];
