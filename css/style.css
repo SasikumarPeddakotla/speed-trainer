@@ -457,3 +457,14 @@ select {
 #backspaceBtn:active {
   transform: translateY(-50%) scale(0.9);
 }
+
+#questionDisplay.large {
+  font-size: 70px;
+  line-height: 1.1;
+}
+
+#questionDisplay.text {
+  font-size: 25px;
+  line-height: 1.3;
+  white-space: normal;
+}

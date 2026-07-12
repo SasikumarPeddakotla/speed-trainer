@@ -118,45 +118,156 @@ function generateMirrorLetter() {
 function generateFractionPercentages() {
   switch (difficultySelect.value) {
     case "f2p":
-      return generateFlashcard(fractionData, "fraction", "percentage");
+      return generateFlashcard(
+        fractionData,
+        "fraction",
+        "percentage",
+        "number",
+        "large",
+      );
 
     case "p2f":
-      return generateFlashcard(fractionData, "percentage", "fraction");
+      return generateFlashcard(
+        fractionData,
+        "percentage",
+        "fraction",
+        "number",
+        "large",
+      );
 
     case "mixed":
       return Math.random() < 0.5
-        ? generateFlashcard(fractionData, "fraction", "percentage")
-        : generateFlashcard(fractionData, "percentage", "fraction");
+        ? generateFlashcard(
+            fractionData,
+            "fraction",
+            "percentage",
+            "number",
+            "large",
+          )
+        : generateFlashcard(
+            fractionData,
+            "percentage",
+            "fraction",
+            "number",
+            "large",
+          );
   }
 }
 
 function generateFractionDecimals() {
   switch (difficultySelect.value) {
     case "f2d":
-      return generateFlashcard(fractionData, "fraction", "decimal");
+      return generateFlashcard(
+        fractionData,
+        "fraction",
+        "decimal",
+        "number",
+        "large",
+      );
 
     case "d2f":
-      return generateFlashcard(fractionData, "decimal", "fraction");
+      return generateFlashcard(
+        fractionData,
+        "decimal",
+        "fraction",
+        "number",
+        "large",
+      );
 
     case "mixed":
       return Math.random() < 0.5
-        ? generateFlashcard(fractionData, "fraction", "decimal")
-        : generateFlashcard(fractionData, "decimal", "fraction");
+        ? generateFlashcard(
+            fractionData,
+            "fraction",
+            "decimal",
+            "number",
+            "large",
+          )
+        : generateFlashcard(
+            fractionData,
+            "decimal",
+            "fraction",
+            "number",
+            "large",
+          );
   }
 }
 
 function generateDecimalPercentage() {
   switch (difficultySelect.value) {
     case "d2p":
-      return generateFlashcard(fractionData, "decimal", "percentage");
+      return generateFlashcard(
+        fractionData,
+        "decimal",
+        "percentage",
+        "number",
+        "large",
+      );
 
     case "p2d":
-      return generateFlashcard(fractionData, "percentage", "decimal");
+      return generateFlashcard(
+        fractionData,
+        "percentage",
+        "decimal",
+        "number",
+        "large",
+      );
 
     case "mixed":
       return Math.random() < 0.5
-        ? generateFlashcard(fractionData, "decimal", "percentage")
-        : generateFlashcard(fractionData, "percentage", "decimal");
+        ? generateFlashcard(
+            fractionData,
+            "decimal",
+            "percentage",
+            "number",
+            "large",
+          )
+        : generateFlashcard(
+            fractionData,
+            "percentage",
+            "decimal",
+            "number",
+            "large",
+          );
+  }
+}
+
+function generateArticles() {
+  switch (difficultySelect.value) {
+    case "a2t":
+      return generateFlashcard(
+        articleData,
+        "article",
+        "display",
+        "letter",
+        "large",
+      );
+
+    case "t2a":
+      return generateFlashcard(
+        articleData,
+        "display",
+        "article",
+        "number",
+        "text",
+      );
+
+    case "mixed":
+      return Math.random() < 0.5
+        ? generateFlashcard(
+            articleData,
+            "article",
+            "display",
+            "letter",
+            "large",
+          )
+        : generateFlashcard(
+            articleData,
+            "display",
+            "article",
+            "number",
+            "text",
+          );
   }
 }
 
@@ -241,6 +352,10 @@ function prepareQuestion() {
     case "decimalPercentage":
       questionObject = generateDecimalPercentage();
       break;
+
+    case "article":
+      questionObject = generateArticles();
+      break;
   }
 
   session.currentQuestion = questionObject;
@@ -248,7 +363,7 @@ function prepareQuestion() {
   if (questionObject.type === "number") {
     setNumberMode();
   } else {
-    setLetterMode();
+    setTextMode();
   }
 }
 
@@ -256,17 +371,19 @@ function showQuestion() {
   const q = session.currentQuestion;
 
   questionDisplay.textContent = q.question;
+  questionDisplay.className = q.questionStyle;
 
   app.correctAnswer = String(q.answer);
 
   session.questionStartTime = performance.now();
 }
 
-function createQuestion(question, answer, type) {
+function createQuestion(question, answer, type, questionStyle = "large") {
   return {
     question,
     answer,
     type,
+    questionStyle,
   };
 }
 

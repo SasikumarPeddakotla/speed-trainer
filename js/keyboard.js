@@ -50,21 +50,28 @@ function press(key) {
 
   answerInput.value += key;
 
-  validate();
+  answerInput.dispatchEvent(new Event("input"));
 }
 
 function setNumberMode() {
   answerInput.dataset.type = "number";
+
+  answerInput.readOnly = true;
+  keyboardContainer.style.display = "grid";
+
+  answerInput.blur();
+
   if (app.currentKeyboard !== "number") {
     buildNumberKeyboard();
     app.currentKeyboard = "number";
   }
 }
 
-function setLetterMode() {
+function setTextMode() {
   answerInput.dataset.type = "letter";
-  if (app.currentKeyboard !== "letter") {
-    buildLetterKeyboard();
-    app.currentKeyboard = "letter";
-  }
+
+  answerInput.readOnly = false;
+  keyboardContainer.style.display = "none";
+
+  answerInput.focus();
 }

@@ -135,6 +135,14 @@ const moduleOptions = {
       ["mixed", "Mixed"],
     ],
   },
+
+  article: {
+    difficultySelect: [
+      ["a2t", "Article → Topic"],
+      ["t2a", "Topic → Article"],
+      ["mixed", "Mixed"],
+    ],
+  },
 };
 
 const qwertyLetters = "QWERTYUIOPASDFGHJKLZXCVBNM".split("");

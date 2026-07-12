@@ -36,6 +36,8 @@ backspaceBtn.addEventListener("pointerdown", () => {
   // Delete one immediately
   answerInput.value = answerInput.value.slice(0, -1);
 
+  answerInput.dispatchEvent(new Event("input"));
+
   // After 500ms, start deleting continuously
   backspaceTimer = setTimeout(() => {
     backspaceInterval = setInterval(() => {
@@ -52,6 +54,8 @@ function stopBackspace() {
 backspaceBtn.addEventListener("pointerup", stopBackspace);
 backspaceBtn.addEventListener("pointerleave", stopBackspace);
 backspaceBtn.addEventListener("pointercancel", stopBackspace);
+
+answerInput.addEventListener("input", validate);
 
 updateOptions();
 
