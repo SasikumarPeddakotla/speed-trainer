@@ -53,6 +53,54 @@ function generateTables() {
   return createQuestion(questionText, table * multiplier, "number");
 }
 
+function generateSquares() {
+  const limit = Number(difficultySelect.value);
+
+  const number = randomInLimit(limit);
+
+  return {
+    question: `${number}²`,
+    answer: number * number,
+    type: "number",
+  };
+}
+
+function generateCubes() {
+  const limit = Number(difficultySelect.value);
+
+  const number = randomInLimit(limit);
+
+  return {
+    question: `${number}³`,
+    answer: number * number * number,
+    type: "number",
+  };
+}
+
+function generateSquareRoots() {
+  const limit = Number(difficultySelect.value);
+
+  const number = randomInLimit(limit);
+
+  return {
+    question: `√${number * number}`,
+    answer: number,
+    type: "number",
+  };
+}
+
+function generateCubeRoots() {
+  const limit = Number(difficultySelect.value);
+
+  const number = randomInLimit(limit);
+
+  return {
+    question: `∛${number * number * number}`,
+    answer: number,
+    type: "number",
+  };
+}
+
 function generateLetterToNumber() {
   let i = Math.floor(Math.random() * 26);
 
@@ -109,6 +157,22 @@ function prepareQuestion() {
 
     case "table":
       questionObject = generateTables();
+      break;
+
+    case "square":
+      questionObject = generateSquares();
+      break;
+
+    case "cube":
+      questionObject = generateCubes();
+      break;
+
+    case "squareRoot":
+      questionObject = generateSquareRoots();
+      break;
+
+    case "cubeRoot":
+      questionObject = generateCubeRoots();
       break;
   }
 

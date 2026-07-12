@@ -5,6 +5,10 @@ function randomNumber(digits) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function randomInLimit(limit) {
+  return Math.floor(Math.random() * limit) + 1;
+}
+
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }

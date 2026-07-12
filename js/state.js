@@ -71,6 +71,46 @@ const moduleOptions = {
       ["30", "Up to ×30"],
     ],
   },
+
+  square: {
+    difficultySelect: [
+      ["20", "Up to 20"],
+      ["30", "Up to 30"],
+      ["50", "Up to 50"],
+      ["75", "Up to 75"],
+      ["100", "Up to 100"],
+    ],
+  },
+
+  cube: {
+    difficultySelect: [
+      ["20", "Up to 20"],
+      ["30", "Up to 30"],
+      ["50", "Up to 50"],
+      ["75", "Up to 75"],
+      ["100", "Up to 100"],
+    ],
+  },
+
+  squareRoot: {
+    difficultySelect: [
+      ["20", "Up to 20"],
+      ["30", "Up to 30"],
+      ["50", "Up to 50"],
+      ["75", "Up to 75"],
+      ["100", "Up to 100"],
+    ],
+  },
+
+  cubeRoot: {
+    difficultySelect: [
+      ["20", "Up to 20"],
+      ["30", "Up to 30"],
+      ["50", "Up to 50"],
+      ["75", "Up to 75"],
+      ["100", "Up to 100"],
+    ],
+  },
 };
 
 const qwertyLetters = "QWERTYUIOPASDFGHJKLZXCVBNM".split("");
