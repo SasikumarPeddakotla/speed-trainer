@@ -13,6 +13,17 @@ function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function randomLetter() {
+  const i = randomInRange(0, 25);
+
+  return {
+    letter: letters[i],
+    position: i + 1,
+    reversePosition: 26 - i,
+    mirror: letters[25 - i],
+  };
+}
+
 function getNumbers() {
   let d = difficultySelect.value;
 

@@ -111,7 +111,7 @@ function renderQuestionSettings(settingsArea) {
 }
 
 function updateOptions() {
-  const alphabetModes = ["mixed", "l2n", "n2l"];
+  const alphabetModes = ["l2p", "p2l", "l2rp", "rp2l", "mirror"];
 
   if (alphabetModes.includes(modeSelect.value)) {
     optionsContainer.style.display = "none";

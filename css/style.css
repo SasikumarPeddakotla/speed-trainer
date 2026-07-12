@@ -96,7 +96,7 @@ select {
 }
 
 .keyboardContainer.alpha {
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
 }
 
 .key {
@@ -425,7 +425,6 @@ select {
 
 #answerInput {
   width: 100%;
-  padding: 15px 50px 15px 15px; /* Extra space on the right */
   font-size: 34px;
   text-align: center;
 

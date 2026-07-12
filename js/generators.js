@@ -85,16 +85,34 @@ function generateCubeRoots() {
   return createQuestion(`∛${number * number * number}`, number, "number");
 }
 
-function generateLetterToNumber() {
-  let i = Math.floor(Math.random() * 26);
+function generateLetterToPosition() {
+  let letter = randomLetter();
 
-  return createQuestion(letters[i], i + 1, "number");
+  return createQuestion(letter.letter, letter.position, "number");
 }
 
-function generateNumberToLetter() {
-  let n = Math.floor(Math.random() * 26) + 1;
+function generateLetterToReversePosition() {
+  let letter = randomLetter();
 
-  return createQuestion(n, letters[n - 1], "letter");
+  return createQuestion(letter.letter, letter.reversePosition, "number");
+}
+
+function generatePositionToLetter() {
+  let letter = randomLetter();
+
+  return createQuestion(letter.position, letter.letter, "letter");
+}
+
+function generateReversePositionToLetter() {
+  let letter = randomLetter();
+
+  return createQuestion(letter.reversePosition, letter.letter, "letter");
+}
+
+function generateMirrorLetter() {
+  let letter = randomLetter();
+
+  return createQuestion(letter.letter, letter.mirror, "letter");
 }
 
 function generateFractionPercentages() {
@@ -153,19 +171,27 @@ function nextQ() {
 function prepareQuestion() {
   let m = modeSelect.value;
 
-  if (m === "mixed") {
-    m = Math.random() < 0.5 ? "l2n" : "n2l";
-  }
-
   let questionObject;
 
   switch (m) {
-    case "l2n":
-      questionObject = generateLetterToNumber();
+    case "l2p":
+      questionObject = generateLetterToPosition();
       break;
 
-    case "n2l":
-      questionObject = generateNumberToLetter();
+    case "p2l":
+      questionObject = generatePositionToLetter();
+      break;
+
+    case "l2rp":
+      questionObject = generateLetterToReversePosition();
+      break;
+
+    case "rp2l":
+      questionObject = generateReversePositionToLetter();
+      break;
+
+    case "mirror":
+      questionObject = generateMirrorLetter();
       break;
 
     case "add":
