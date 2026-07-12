@@ -29,6 +29,30 @@ startBtn.onclick = () => {
   startSession();
 };
 
+let backspaceTimer = null;
+let backspaceInterval = null;
+
+backspaceBtn.addEventListener("pointerdown", () => {
+  // Delete one immediately
+  answerInput.value = answerInput.value.slice(0, -1);
+
+  // After 500ms, start deleting continuously
+  backspaceTimer = setTimeout(() => {
+    backspaceInterval = setInterval(() => {
+      answerInput.value = answerInput.value.slice(0, -1);
+    }, 60);
+  }, 500);
+});
+
+function stopBackspace() {
+  clearTimeout(backspaceTimer);
+  clearInterval(backspaceInterval);
+}
+
+backspaceBtn.addEventListener("pointerup", stopBackspace);
+backspaceBtn.addEventListener("pointerleave", stopBackspace);
+backspaceBtn.addEventListener("pointercancel", stopBackspace);
+
 updateOptions();
 
 prepareSession();

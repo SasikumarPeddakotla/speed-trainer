@@ -3,7 +3,7 @@ function buildNumberKeyboard() {
 
   keyboardContainer.innerHTML = "";
 
-  const keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "AC", "0", "⌫"];
+  const keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "0", "/"];
 
   keys.forEach(createButton);
 }
@@ -14,9 +14,6 @@ function buildLetterKeyboard() {
   keyboardContainer.innerHTML = "";
 
   qwertyLetters.forEach(createButton);
-
-  createButton("⌫");
-  createButton("AC");
 }
 
 function createButton(text) {

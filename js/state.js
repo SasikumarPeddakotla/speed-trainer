@@ -111,6 +111,30 @@ const moduleOptions = {
       ["100", "Up to 100"],
     ],
   },
+
+  fractionPercentage: {
+    difficultySelect: [
+      ["f2p", "Fraction → %"],
+      ["p2f", "% → Fraction"],
+      ["mixed", "Mixed"],
+    ],
+  },
+
+  fractionDecimal: {
+    difficultySelect: [
+      ["f2d", "Fraction → Decimal"],
+      ["d2f", "Decimal → Fraction"],
+      ["mixed", "Mixed"],
+    ],
+  },
+
+  decimalPercentage: {
+    difficultySelect: [
+      ["d2p", "Decimal → Percentage"],
+      ["p2d", "Percentage → Decimal"],
+      ["mixed", "Mixed"],
+    ],
+  },
 };
 
 const qwertyLetters = "QWERTYUIOPASDFGHJKLZXCVBNM".split("");

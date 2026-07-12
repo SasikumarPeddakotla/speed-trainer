@@ -51,10 +51,19 @@
           <option value="mul">Multiplication</option>
           <option value="div">Division</option>
           <option value="table">Tables</option>
+        </optgroup>
+
+        <optgroup label="Powers and Roots">
           <option value="square">Squares (n²)</option>
           <option value="cube">Cubes (n³)</option>
           <option value="squareRoot">Square Roots (√n)</option>
           <option value="cubeRoot">Cube Roots (∛n)</option>
+        </optgroup>
+
+        <optgroup label="Conversions">
+          <option value="fractionPercentage">Fraction ↔ Percentage</option>
+          <option value="fractionDecimal">Fraction ↔ Decimal</option>
+          <option value="decimalPercentage">Percentage ↔ Decimal (WIP)</option>
         </optgroup>
       </select>
 
@@ -71,7 +80,11 @@
       <div id="questionArea">
         <div id="questionDisplay"></div>
 
-        <input id="answerInput" readonly autocomplete="off" />
+        <div class="answerContainer">
+          <input id="answerInput" readonly autocomplete="off" />
+
+          <button id="backspaceBtn" type="button">⌫</button>
+        </div>
 
         <div id="feedbackLabel"></div>
 
@@ -100,6 +113,10 @@
     <script src="js/session.js"></script>
 
     <script src="js/summary.js"></script>
+
+    <script src="js/flashcard.js"></script>
+
+    <script src="./data/fractions.js"></script>
 
     <script src="js/app.js"></script>
   </body>

@@ -418,3 +418,43 @@ select {
 #questionArea {
   display: block;
 }
+
+.answerContainer {
+  position: relative;
+}
+
+#answerInput {
+  width: 100%;
+  padding: 15px 50px 15px 15px; /* Extra space on the right */
+  font-size: 34px;
+  text-align: center;
+
+  border: 3px solid #bdbdbd;
+  border-radius: 12px;
+  outline: none;
+
+  background: #fafafa;
+}
+
+#backspaceBtn {
+  position: absolute;
+
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  border: none;
+  background: transparent;
+
+  font-size: 24px;
+
+  cursor: pointer;
+
+  color: #666;
+
+  padding: 6px;
+}
+
+#backspaceBtn:active {
+  transform: translateY(-50%) scale(0.9);
+}

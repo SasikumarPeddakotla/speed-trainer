@@ -56,49 +56,33 @@ function generateTables() {
 function generateSquares() {
   const limit = Number(difficultySelect.value);
 
-  const number = randomInLimit(limit);
+  const number = randomInRange(2, limit);
 
-  return {
-    question: `${number}²`,
-    answer: number * number,
-    type: "number",
-  };
+  return createQuestion(`${number}²`, number * number, "number");
 }
 
 function generateCubes() {
   const limit = Number(difficultySelect.value);
 
-  const number = randomInLimit(limit);
+  const number = randomInRange(2, limit);
 
-  return {
-    question: `${number}³`,
-    answer: number * number * number,
-    type: "number",
-  };
+  return createQuestion(`${number}³`, number * number * number, "number");
 }
 
 function generateSquareRoots() {
   const limit = Number(difficultySelect.value);
 
-  const number = randomInLimit(limit);
+  const number = randomInRange(2, limit);
 
-  return {
-    question: `√${number * number}`,
-    answer: number,
-    type: "number",
-  };
+  return createQuestion(`√${number * number}`, number, "number");
 }
 
 function generateCubeRoots() {
   const limit = Number(difficultySelect.value);
 
-  const number = randomInLimit(limit);
+  const number = randomInRange(2, limit);
 
-  return {
-    question: `∛${number * number * number}`,
-    answer: number,
-    type: "number",
-  };
+  return createQuestion(`∛${number * number * number}`, number, "number");
 }
 
 function generateLetterToNumber() {
@@ -111,6 +95,51 @@ function generateNumberToLetter() {
   let n = Math.floor(Math.random() * 26) + 1;
 
   return createQuestion(n, letters[n - 1], "letter");
+}
+
+function generateFractionPercentages() {
+  switch (difficultySelect.value) {
+    case "f2p":
+      return generateFlashcard(fractionData, "fraction", "percentage");
+
+    case "p2f":
+      return generateFlashcard(fractionData, "percentage", "fraction");
+
+    case "mixed":
+      return Math.random() < 0.5
+        ? generateFlashcard(fractionData, "fraction", "percentage")
+        : generateFlashcard(fractionData, "percentage", "fraction");
+  }
+}
+
+function generateFractionDecimals() {
+  switch (difficultySelect.value) {
+    case "f2d":
+      return generateFlashcard(fractionData, "fraction", "decimal");
+
+    case "d2f":
+      return generateFlashcard(fractionData, "decimal", "fraction");
+
+    case "mixed":
+      return Math.random() < 0.5
+        ? generateFlashcard(fractionData, "fraction", "decimal")
+        : generateFlashcard(fractionData, "decimal", "fraction");
+  }
+}
+
+function generateDecimalPercentage() {
+  switch (difficultySelect.value) {
+    case "d2p":
+      return generateFlashcard(fractionData, "decimal", "percentage");
+
+    case "p2d":
+      return generateFlashcard(fractionData, "percentage", "decimal");
+
+    case "mixed":
+      return Math.random() < 0.5
+        ? generateFlashcard(fractionData, "decimal", "percentage")
+        : generateFlashcard(fractionData, "percentage", "decimal");
+  }
 }
 
 function nextQ() {
@@ -173,6 +202,18 @@ function prepareQuestion() {
 
     case "cubeRoot":
       questionObject = generateCubeRoots();
+      break;
+
+    case "fractionPercentage":
+      questionObject = generateFractionPercentages();
+      break;
+
+    case "fractionDecimal":
+      questionObject = generateFractionDecimals();
+      break;
+
+    case "decimalPercentage":
+      questionObject = generateDecimalPercentage();
       break;
   }
 
