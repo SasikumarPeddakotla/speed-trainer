@@ -23,12 +23,14 @@ const session = {
   totalResponseTime: 0,
   currentQuestion: null,
   history: [],
+  isActive: false,
 };
 
 const timer = {
   id: null,
   startedAt: null,
   duration: 0,
+  remainingSeconds: 0,
   mode: "practice", // "practice" or "countdown"
 };
 

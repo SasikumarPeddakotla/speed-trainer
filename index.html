@@ -17,7 +17,9 @@
       <div class="header">
         <h1>⚡ Speed Trainer</h1>
 
-        <button id="settingsBtn">⚙</button>
+        <div class="header-buttons">
+          <button id="settingsBtn">⚙</button>
+        </div>
       </div>
 
       <div class="stats">
@@ -30,8 +32,10 @@
         <span>🎯 <b id="accuracyLabel">100%</b></span>
       </div>
 
-      <div class="statusBar">
-        <span id="statusDisplay">⏱ 00:00</span>
+      <div id="statusBar" class="statusBar">
+        <span id="statusDisplay"></span>
+
+        <button id="restartBtn" style="display: none">🔄 Reset</button>
       </div>
 
       <select id="modeSelect">
@@ -56,13 +60,19 @@
         <select id="tableLimitSelect" style="display: none"></select>
       </div>
 
-      <div id="questionDisplay"></div>
+      <div id="readyPanel">
+        <button id="startBtn">▶ Start</button>
+      </div>
 
-      <input id="answerInput" readonly autocomplete="off" />
+      <div id="questionArea">
+        <div id="questionDisplay"></div>
 
-      <div id="feedbackLabel"></div>
+        <input id="answerInput" readonly autocomplete="off" />
 
-      <div id="keyboardContainer" class="keyboardContainer"></div>
+        <div id="feedbackLabel"></div>
+
+        <div id="keyboardContainer" class="keyboardContainer"></div>
+      </div>
 
       <div id="modalContainer"></div>
     </div>

@@ -38,6 +38,8 @@ function createButton(text) {
 // -------------------------
 
 function press(key) {
+  if (!session.isActive) return;
+
   if (key === "AC") {
     answerInput.value = "";
     return;

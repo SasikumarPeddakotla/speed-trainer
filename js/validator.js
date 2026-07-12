@@ -1,4 +1,6 @@
 function validate() {
+  if (!session.isActive) return;
+
   let userAnswer = answerInput.value.toUpperCase();
 
   // Letter mode

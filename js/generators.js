@@ -68,6 +68,12 @@ function generateNumberToLetter() {
 function nextQ() {
   resetQuestion();
 
+  prepareQuestion();
+
+  showQuestion();
+}
+
+function prepareQuestion() {
   let m = modeSelect.value;
 
   if (m === "mixed") {
@@ -107,18 +113,20 @@ function nextQ() {
   }
 
   session.currentQuestion = questionObject;
-  presentQuestion(questionObject);
-}
-
-function presentQuestion(questionObject) {
-  questionDisplay.textContent = questionObject.question;
-  app.correctAnswer = String(questionObject.answer);
 
   if (questionObject.type === "number") {
     setNumberMode();
   } else {
     setLetterMode();
   }
+}
+
+function showQuestion() {
+  const q = session.currentQuestion;
+
+  questionDisplay.textContent = q.question;
+
+  app.correctAnswer = String(q.answer);
 
   session.questionStartTime = performance.now();
 }

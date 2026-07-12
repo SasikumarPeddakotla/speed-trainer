@@ -9,8 +9,8 @@ body {
   background: #eef2ff;
   display: flex;
   justify-content: center;
-  /*align-items: center;
-        min-height: 100vh;*/
+  align-items: center;
+  min-height: 100vh;
   padding: 15px;
 }
 
@@ -50,6 +50,7 @@ select {
   font-weight: bold;
   color: #2563eb;
   margin: 25px 0;
+  height: 70px;
 }
 
 #answerInput {
@@ -307,21 +308,21 @@ select {
 }
 
 #settingsBtn {
-  width: 42px;
-
-  height: 42px;
-
-  border: none;
-
-  border-radius: 50%;
-
   background: #2563eb;
+}
 
-  color: white;
-
-  font-size: 22px;
-
+#restartBtn {
+  border: none;
+  background: transparent;
+  font-size: 15px;
   cursor: pointer;
+
+  padding: 4px 8px;
+
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .setting-option {
@@ -357,6 +358,8 @@ select {
   font-weight: bold;
 
   color: #2563eb;
+
+  position: relative;
 }
 
 .summary-row {
@@ -373,4 +376,45 @@ select {
 
 .summary-row:last-child {
   border-bottom: none;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.header-buttons button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.keyboardContainer.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+#readyPanel {
+  display: none;
+  text-align: center;
+  padding: 30px 0;
+}
+
+#startBtn {
+  padding: 14px 36px;
+  font-size: 20px;
+  font-weight: 600;
+
+  border: none;
+  border-radius: 12px;
+
+  cursor: pointer;
+}
+
+#questionArea {
+  display: block;
 }

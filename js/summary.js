@@ -34,7 +34,7 @@ function showSessionSummary() {
   );
 
   openModal("🎉 Session Complete", container, () => {
-    startSession();
+    prepareSession();
     return true;
   });
 }

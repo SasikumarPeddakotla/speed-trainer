@@ -1,4 +1,11 @@
-function openModal(title, bodyElement, onOk) {
+function openModal(title, bodyElement, onOk, options = {}) {
+  const {
+    okText = "OK",
+    cancelText = "Cancel",
+    onOpen = null,
+    onCancel = null,
+  } = options;
+
   modalContainer.innerHTML = "";
 
   const overlay = document.createElement("div");
@@ -23,18 +30,28 @@ function openModal(title, bodyElement, onOk) {
 
   const cancelBtn = document.createElement("button");
   cancelBtn.className = "modal-btn cancel";
-  cancelBtn.textContent = "Cancel";
+  cancelBtn.textContent = cancelText;
 
-  cancelBtn.onclick = closeModal;
+  cancelBtn.onclick = () => {
+    if (onCancel) {
+      onCancel();
+    }
+
+    closeModal();
+  };
 
   const okBtn = document.createElement("button");
   okBtn.className = "modal-btn ok";
-  okBtn.textContent = "OK";
+  okBtn.textContent = okText;
 
   okBtn.onclick = () => {
     const shouldClose = onOk ? onOk() : true;
 
     if (shouldClose) {
+      if (onCancel) {
+        onCancel();
+      }
+
       closeModal();
     }
   };
@@ -44,6 +61,10 @@ function openModal(title, bodyElement, onOk) {
   modal.append(header, body, error, footer);
 
   overlay.appendChild(modal);
+
+  if (onOpen) {
+    onOpen();
+  }
 
   modalContainer.appendChild(overlay);
 

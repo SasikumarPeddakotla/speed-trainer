@@ -1,6 +1,6 @@
 modeSelect.onchange = () => {
   updateOptions();
-  nextQ();
+  prepareSession();
 };
 
 difficultySelect.onchange = () => {
@@ -10,20 +10,28 @@ difficultySelect.onchange = () => {
       return;
     }
 
-    // User selected Random
     difficultySelect.options[1].text = app.customText;
   }
 
-  nextQ();
+  prepareSession();
 };
 
-tableLimitSelect.onchange = nextQ;
+tableLimitSelect.onchange = () => {
+  prepareSession();
+};
 
 settingsBtn.onclick = openPracticeSettings;
+restartBtn.onclick = () => {
+  openRestartConfirmation();
+};
+
+startBtn.onclick = () => {
+  startSession();
+};
 
 updateOptions();
 
-startSession();
+prepareSession();
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {

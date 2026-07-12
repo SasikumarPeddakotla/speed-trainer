@@ -141,7 +141,7 @@ function updateOptions() {
 }
 
 function applyPracticeSettings() {
-  startSession();
+  prepareSession();
 }
 
 function openTablePopup() {
@@ -222,7 +222,7 @@ function openTablePopup() {
     difficultySelect.options[1].text =
       "Custom (" + app.selectedTables.join(",") + ")";
 
-    nextQ();
+    prepareSession();
 
     return true;
   });
