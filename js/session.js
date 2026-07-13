@@ -5,7 +5,6 @@ function prepareSession() {
 
   session.correctCount = 0;
   session.wrongCount = 0;
-  session.total = 0;
 
   session.streakCount = 0;
   session.bestStreak = 0;
@@ -68,7 +67,11 @@ function updateStats() {
   document.getElementById("streak").textContent = session.streakCount;
 
   document.getElementById("accuracyLabel").textContent =
-    Math.round((session.correctCount / Math.max(session.total, 1)) * 100) + "%";
+    Math.round(
+      (session.correctCount /
+        Math.max(session.correctCount + session.wrongCount, 1)) *
+        100,
+    ) + "%";
 }
 
 function getAverageResponseTime() {

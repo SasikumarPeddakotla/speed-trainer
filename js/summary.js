@@ -22,8 +22,11 @@ function showSessionSummary() {
     createSummaryRow("✖ Wrong", session.wrongCount),
     createSummaryRow(
       "🎯 Accuracy",
-      Math.round((session.correctCount / Math.max(session.total, 1)) * 100) +
-        "%",
+      Math.round(
+        (session.correctCount /
+          Math.max(session.correctCount + session.wrongCount, 1)) *
+          100,
+      ) + "%",
     ),
     createSummaryRow("🔥 Best Streak", session.bestStreak),
     createSummaryRow(

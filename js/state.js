@@ -16,7 +16,6 @@ const session = {
   wrongCount: 0,
   streakCount: 0,
   bestStreak: 0,
-  total: 0,
   startTime: null,
   endTime: null,
   questionStartTime: null,

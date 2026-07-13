@@ -37,8 +37,6 @@ function validate() {
 // -------------------------
 
 function checkAnswer(userAnswer) {
-  session.total++;
-
   if (userAnswer === app.correctAnswer) {
     const elapsed = performance.now() - session.questionStartTime;
     session.totalResponseTime += elapsed;
