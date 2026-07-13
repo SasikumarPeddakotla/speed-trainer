@@ -48,10 +48,6 @@ function openModal(title, bodyElement, onOk, options = {}) {
     const shouldClose = onOk ? onOk() : true;
 
     if (shouldClose) {
-      if (onCancel) {
-        onCancel();
-      }
-
       closeModal();
     }
   };
